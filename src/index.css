@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium Advertorial Design System - Fator Essencial 
+Colors: Dark Green Authority + Metallic Gold Premium
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Dark Green Authority */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    
+    /* Premium Dark Green Palette */
+    --primary: 160 45% 15%; /* Deep authoritative dark green #1a3d3a */
+    --primary-light: 160 35% 25%; /* Lighter variant #2d5a54 */
+    --primary-foreground: 0 0% 98%;
+    
+    /* Metallic Gold Accents */
+    --gold: 43 74% 52%; /* Vibrant metallic gold #d4af37 */
+    --gold-dark: 43 45% 35%; /* Darker gold #b8860b */
+    --gold-light: 45 85% 75%; /* Light gold for highlights */
+    --gold-foreground: 0 0% 10%;
+    
+    /* Supporting Colors */
+    --secondary: 160 25% 8%; /* Very dark green for sections */
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 210 16% 98%; /* Soft light gray #f8f9fa */
+    --muted-foreground: 0 0% 45%;
+    
+    --accent: var(--gold);
+    --accent-foreground: var(--gold-foreground);
+    
+    /* Neutral Grays */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: var(--gold);
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Glass Effects */
+    --glass-bg: 0 0% 100% / 0.1;
+    --glass-border: 0 0% 100% / 0.18;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-gold: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)));
+    --gradient-glass: linear-gradient(135deg, hsl(var(--glass-bg)), hsl(var(--glass-border)));
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(var(--primary) / 0.25);
+    --shadow-gold: 0 8px 32px -8px hsl(var(--gold) / 0.3);
+    --shadow-glass: 0 8px 32px 0 hsl(0 0% 0% / 0.37);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --radius: 1rem;
+  }
+
+  .dark {
+    /* Dark mode uses same premium colors but with adjusted contrast */
+    --background: var(--secondary);
+    --foreground: 0 0% 98%;
+    --card: var(--primary);
+    --card-foreground: 0 0% 98%;
+    --muted: var(--primary-light);
+    --muted-foreground: 0 0% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+  
+  /* Typography System */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat font-bold tracking-tight;
+  }
+  
+  .font-inter { font-family: 'Inter', sans-serif; }
+  .font-montserrat { font-family: 'Montserrat', sans-serif; }
+  .font-playfair { font-family: 'Playfair Display', serif; }
+}
+
+@layer components {
+  /* Glass Effect Components */
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
+    box-shadow: var(--shadow-glass);
+  }
+  
+  /* Premium Button Variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-gold to-gold-light text-gold-foreground font-montserrat font-bold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg;
+    box-shadow: var(--shadow-gold);
+  }
+  
+  /* Animation Classes */
+  .fade-in-up {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+  
+  .fade-in-up.animate {
+    @apply opacity-100 translate-y-0;
+  }
+  
+  /* Sticky CTA */
+  .sticky-cta {
+    @apply fixed bottom-0 left-0 right-0 z-50 p-4 bg-white/95 backdrop-blur-sm border-t border-gold/20;
+  }
+  
+  /* Mobile-optimized spacing */
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-12 lg:py-20;
+  }
+}
