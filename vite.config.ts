@@ -32,7 +32,7 @@ export default defineConfig(({ mode }) => ({
         // Split chunks for better caching
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          audio: ['./src/components/AudioPlayer.tsx', './src/components/AudioNarration.tsx'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-slot'],
         },
         // Optimize chunk size for mobile
         chunkFileNames: 'assets/[name]-[hash].js',
