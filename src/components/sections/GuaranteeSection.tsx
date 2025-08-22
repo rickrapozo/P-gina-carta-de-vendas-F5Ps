@@ -75,13 +75,13 @@ export const GuaranteeSection = () => {
                 <div className="grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
                   <div className="space-y-3">
                     <div className="text-4xl">❌</div>
-                    <h4 className="font-montserrat font-bold text-lg">Você</h4>
-                    <p className="text-sm opacity-80">Risco ZERO</p>
+                    <h4 className="font-montserrat font-bold text-lg text-white">Você</h4>
+                    <p className="text-sm text-white">Risco ZERO</p>
                   </div>
                   <div className="space-y-3">
                     <div className="text-4xl">✅</div>
-                    <h4 className="font-montserrat font-bold text-lg">Eu (Ricardo)</h4>
-                    <p className="text-sm opacity-80">100% do Risco</p>
+                    <h4 className="font-montserrat font-bold text-lg text-white">Eu (Ricardo)</h4>
+                    <p className="text-sm text-white">100% do Risco</p>
                   </div>
                 </div>
                 

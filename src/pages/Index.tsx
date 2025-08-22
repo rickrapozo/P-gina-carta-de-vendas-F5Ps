@@ -10,9 +10,72 @@ import { OfferSection } from "@/components/sections/OfferSection";
 import { BonusesSection } from "@/components/sections/BonusesSection";
 import { GuaranteeSection } from "@/components/sections/GuaranteeSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
-import { useEffect } from "react";
+import { LGPDPopup } from "@/components/ui/lgpd-popup";
+import { useEffect, useState } from "react";
 
 const Index = () => {
+  const [showLGPDPopup, setShowLGPDPopup] = useState(false);
+
+  // LGPD Popup handlers
+  const handleAcceptCookies = () => {
+    localStorage.setItem('lgpd-consent', 'accepted');
+    localStorage.setItem('lgpd-consent-date', new Date().toISOString());
+    setShowLGPDPopup(false);
+    
+    // Enable analytics cookies
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('consent', 'update', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'granted'
+      });
+    }
+  };
+
+  const handleDeclineCookies = () => {
+    localStorage.setItem('lgpd-consent', 'declined');
+    localStorage.setItem('lgpd-consent-date', new Date().toISOString());
+    setShowLGPDPopup(false);
+    
+    // Keep analytics cookies disabled
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('consent', 'update', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied'
+      });
+    }
+  };
+
+  useEffect(() => {
+    // Check LGPD consent
+    const checkLGPDConsent = () => {
+      const consent = localStorage.getItem('lgpd-consent');
+      const consentDate = localStorage.getItem('lgpd-consent-date');
+      
+      if (!consent) {
+        // Show popup after 2 seconds for better UX
+        setTimeout(() => {
+          setShowLGPDPopup(true);
+        }, 2000);
+      } else if (consentDate) {
+        // Check if consent is older than 12 months
+        const consentTimestamp = new Date(consentDate).getTime();
+        const now = new Date().getTime();
+        const twelveMonthsInMs = 12 * 30 * 24 * 60 * 60 * 1000;
+        
+        if (now - consentTimestamp > twelveMonthsInMs) {
+          // Reset consent after 12 months
+          localStorage.removeItem('lgpd-consent');
+          localStorage.removeItem('lgpd-consent-date');
+          setTimeout(() => {
+            setShowLGPDPopup(true);
+          }, 2000);
+        }
+      }
+    };
+
+    checkLGPDConsent();
+  }, []);
+
   useEffect(() => {
     // Initialize scroll animations
     const observeElements = () => {
@@ -62,7 +125,7 @@ const Index = () => {
             "@type": "Product",
             "name": "Fator Essencial - Método 5Ps",
             "description": "Método revolucionário de 15 minutos diários para reprogramar sua mente para a prosperidade. Transforme ansiedade em combustível e derrube barreiras invisíveis.",
-            "image": "https://lovable.dev/opengraph-image-p98pqg.png",
+            "image": "/favicon.ico",
             "brand": {
               "@type": "Person",
               "name": "Ricardo Borges Rapozo"
@@ -142,14 +205,30 @@ const Index = () => {
             <a href="#" className="hover:text-gold transition-colors">Contato</a>
           </div>
           
-          <div className="pt-4 border-t border-secondary-foreground/20">
+          <div className="pt-4 border-t border-secondary-foreground/20 space-y-4">
             <p className="text-xs font-inter text-secondary-foreground/60 max-w-2xl mx-auto leading-relaxed">
               Este produto não substitui o acompanhamento médico ou psicológico profissional. 
               Os resultados podem variar de pessoa para pessoa. Consulte sempre um profissional qualificado.
             </p>
+            
+            {/* Disclaimer de não afiliação e responsabilidade de dados */}
+            <div className="space-y-3 max-w-3xl mx-auto">
+              <p className="text-xs font-inter text-secondary-foreground/60 leading-relaxed">
+                <span className="font-semibold text-secondary-foreground/80">Não Afiliação a Redes Sociais:</span> Este produto e seus criadores não possuem afiliação oficial com Facebook, Instagram, YouTube, TikTok, WhatsApp ou qualquer outra plataforma de mídia social mencionada. Todas as marcas registradas pertencem aos seus respectivos proprietários.
+              </p>
+              
+
+            </div>
           </div>
         </div>
       </footer>
+      
+      {/* LGPD Popup */}
+      <LGPDPopup 
+        isVisible={showLGPDPopup}
+        onAccept={handleAcceptCookies}
+        onDecline={handleDeclineCookies}
+      />
     </div>
   );
 };

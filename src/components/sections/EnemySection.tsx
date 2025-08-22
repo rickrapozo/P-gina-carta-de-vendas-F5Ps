@@ -46,21 +46,21 @@ export const EnemySection = () => {
                 ❌ O Que Eles Te Venderam
               </h4>
               <ul className="space-y-3 text-base font-inter">
-                <li className="flex items-start space-x-3 bg-slate-50">
+                <li className="flex items-start space-x-3">
                   <span className="text-destructive font-bold">•</span>
-                  <span className="text-slate-950">"Apenas pense positivo"</span>
+                  <span className="text-black">"Apenas pense positivo"</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-destructive font-bold">•</span>
-                  <span className="text-slate-950">"Visualize e acontecerá"</span>
+                  <span className="text-black">"Visualize e acontecerá"</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-destructive font-bold">•</span>
-                  <span className="text-slate-950">"Repita afirmações diariamente"</span>
+                  <span className="text-black">"Repita afirmações diariamente"</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <span className="text-destructive font-bold">•</span>
-                  <span className="text-slate-950">"O problema está na sua mentalidade"</span>
+                  <span className="text-black">"O problema está na sua mentalidade"</span>
                 </li>
               </ul>
             </div>
@@ -100,7 +100,7 @@ export const EnemySection = () => {
               <div className="max-w-3xl mx-auto space-y-6 text-lg font-inter leading-relaxed">
                 <p>
                   Eles te venderam uma promessa vazia, um band-aid para uma ferida profunda, 
-                  e <span className="font-bold text-white">te deixaram se sentindo um fracasso quando não funcionou.</span>
+                  e <span className="font-bold text-white">te deixaram se sentindo um fracasso quando não funciona.</span>
                 </p>
                 <p className="bg-white/10 rounded-xl p-6 border border-gold/30 font-playfair italic text-xl text-gold">
                   "Hoje, nós expomos essa mentira e te entregamos o manual de instruções completo."

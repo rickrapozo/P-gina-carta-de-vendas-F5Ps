@@ -11,9 +11,8 @@ export const OfferSection = () => {
       });
     }
     
-    // Here you would typically redirect to a payment processor
-    // For demo purposes, we'll show an alert
-    alert('Redirecionando para o checkout... (Demo)');
+    // Redirect to payment page
+    window.open('https://pay.cakto.com.br/sregdp8', '_blank');
   };
 
   return (

@@ -95,7 +95,7 @@ export const BonusesSection = () => {
         {/* Total Value */}
         <div className="bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 rounded-3xl p-8 lg:p-12 border-2 border-gold/30">
           <div className="text-center space-y-6">
-            <h3 className="text-2xl sm:text-3xl font-montserrat font-bold text-primary">
+            <h3 className="text-2xl sm:text-3xl font-montserrat font-bold text-gold">
               Valor Total dos Bônus:
             </h3>
             
@@ -104,7 +104,7 @@ export const BonusesSection = () => {
                 R$ {totalBonusValue.toLocaleString('pt-BR')}
               </div>
               
-              <p className="text-xl font-inter text-primary max-w-2xl mx-auto">
+              <p className="text-xl font-inter text-white max-w-2xl mx-auto">
                 Tudo isso <span className="font-bold text-gold">GRATUITAMENTE</span> quando você adquire o{" "}
                 <span className="font-bold">Fator Essencial</span> hoje!
               </p>
@@ -114,13 +114,13 @@ export const BonusesSection = () => {
             <div className="bg-white/50 rounded-2xl p-6 border border-gold/30 max-w-2xl mx-auto">
               <div className="grid grid-cols-2 gap-6 text-center">
                 <div>
-                  <p className="text-sm font-inter text-muted-foreground mb-2">Se comprado separadamente:</p>
+                  <p className="text-sm font-inter text-white mb-2">Se comprado separadamente:</p>
                   <p className="text-2xl font-montserrat font-bold text-primary line-through">
                     R$ {(totalBonusValue + 27).toLocaleString('pt-BR')}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm font-inter text-muted-foreground mb-2">Seu investimento hoje:</p>
+                  <p className="text-sm font-inter text-white mb-2">Seu investimento hoje:</p>
                   <p className="text-3xl font-montserrat font-bold text-gold">
                     R$ 27
                   </p>

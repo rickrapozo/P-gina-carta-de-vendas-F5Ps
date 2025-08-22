@@ -1,0 +1,142 @@
+/* Mobile Performance Optimizations */
+
+/* Critical CSS for mobile - inline this in production */
+@media (max-width: 768px) {
+  /* Reduce font loading impact */
+  body {
+    font-display: swap;
+  }
+  
+  /* Optimize images for mobile */
+  img {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
+    loading: lazy;
+    decoding: async;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+  }
+  
+  /* Critical images should load immediately */
+  img[data-critical="true"] {
+    loading: eager;
+    content-visibility: visible;
+  }
+  
+  /* Optimize background images for mobile */
+  .hero-section {
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll !important;
+  }
+  
+  /* Lazy load non-critical sections */
+  .section:not(.hero-section) {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+  }
+  
+  /* Reduce animation complexity on mobile */
+  .animate-fade-in-up,
+  .animate-glow,
+  .animate-pulse {
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+  }
+  
+  /* Optimize backdrop blur for mobile */
+  .backdrop-blur-sm {
+    backdrop-filter: none;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Reduce shadow complexity */
+  .shadow-lg,
+  .shadow-xl {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Optimize gradients */
+  .bg-gradient-to-r,
+  .bg-gradient-to-b {
+    background-image: none;
+    background-color: var(--gold);
+  }
+  
+  /* Reduce transform complexity */
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+  
+  /* Optimize audio player for mobile */
+  .audio-player {
+    will-change: auto;
+  }
+  
+  /* Reduce reflow by setting explicit dimensions */
+  .button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Optimize text rendering */
+  .font-montserrat,
+  .font-inter,
+  .font-playfair {
+    text-rendering: optimizeSpeed;
+    font-smooth: never;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+  
+  /* Optimize font loading for mobile */
+  @font-face {
+    font-family: 'Inter';
+    font-display: swap;
+    font-weight: 100 900;
+    src: local('Inter'), url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+  }
+  
+  /* Reduce font sizes on very small screens */
+  @media (max-width: 480px) {
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.3rem; }
+    p { font-size: 0.9rem; }
+  }
+}
+
+/* Preload critical resources hint */
+@media (max-width: 768px) {
+  /* Use system fonts as fallback for faster rendering */
+  .font-fallback {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode optimizations */
+@media (prefers-contrast: high) {
+  .bg-white\/5,
+  .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Dark mode optimizations for mobile */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  .bg-gradient-to-r,
+  .bg-gradient-to-b {
+    background-color: #1a1a1a;
+  }
+}

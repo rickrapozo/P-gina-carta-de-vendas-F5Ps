@@ -1,73 +1,165 @@
-# Welcome to your Lovable project
+# Mind Reboot Studio - Método 5Ps
 
-## Project info
+Uma landing page moderna e otimizada para o método revolucionário de desenvolvimento pessoal "5Ps" - 15 minutos diários para reprogramar sua mente para a prosperidade.
 
-**URL**: https://lovable.dev/projects/5093bcf1-3d12-4892-af4b-40bc5a246e7d
+## 🚀 Características
 
-## How can I edit this code?
+- **Design Responsivo**: Otimizado para desktop e mobile
+- **Performance Otimizada**: Carregamento rápido com lazy loading e otimizações específicas para mobile
+- **Player de Áudio Integrado**: Narração da carta de vendas com fallback automático
+- **SEO Otimizado**: Meta tags completas e structured data
+- **Animações Suaves**: Transições e efeitos visuais modernos
 
-There are several ways of editing your application.
+## 🛠️ Tecnologias Utilizadas
 
-**Use Lovable**
+- **Vite** - Build tool e dev server
+- **React 18** - Framework frontend
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS** - Framework CSS utilitário
+- **Shadcn/ui** - Componentes UI
+- **Lucide React** - Ícones
+- **Framer Motion** - Animações
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5093bcf1-3d12-4892-af4b-40bc5a246e7d) and start prompting.
+## 📦 Instalação e Uso
 
-Changes made via Lovable will be committed automatically to this repo.
+### Pré-requisitos
+- Node.js 18+ 
+- npm ou yarn
 
-**Use your preferred IDE**
+### Instalação
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Clone o repositório
+git clone [url-do-repositorio]
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Entre no diretório
+cd mind-reboot-studio-main
 
-Follow these steps:
+# Instale as dependências
+npm install
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Inicie o servidor de desenvolvimento
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Scripts Disponíveis
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Desenvolvimento
+npm run dev
 
-**Use GitHub Codespaces**
+# Build para produção
+npm run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Preview do build
+npm run preview
 
-## What technologies are used for this project?
+# Linting
+npm run lint
+```
 
-This project is built with:
+## 🎯 Otimizações de Performance
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Mobile-First
+- Carregamento diferido de scripts não críticos
+- Otimização de imagens com lazy loading
+- CSS específico para mobile
+- Redução de animações complexas em dispositivos móveis
 
-## How can I deploy this project?
+### Network
+- Preconnect hints para recursos externos
+- DNS prefetch para domínios críticos
+- Carregamento assíncrono do Google Fonts
+- Code splitting inteligente
 
-Simply open [Lovable](https://lovable.dev/projects/5093bcf1-3d12-4892-af4b-40bc5a246e7d) and click on Share -> Publish.
+### Build
+- Minificação com Terser
+- Tree shaking automático
+- Chunks otimizados para cache
+- Compressão de assets
 
-## Can I connect a custom domain to my Lovable project?
+## 📁 Estrutura do Projeto
 
-Yes, you can!
+```
+src/
+├── components/          # Componentes reutilizáveis
+│   ├── sections/       # Seções da landing page
+│   └── ui/            # Componentes de interface
+├── config/             # Configurações
+├── hooks/              # Custom hooks
+├── lib/                # Utilitários
+├── pages/              # Páginas
+└── types/              # Definições de tipos
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🎨 Customização
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Cores e Tema
+As cores principais estão definidas no `tailwind.config.ts`:
+- **Gold**: #FFD700 (cor principal)
+- **Dark**: #0A0A0A (fundo escuro)
+- **Accent**: Gradientes dourados
+
+### Conteúdo
+O conteúdo principal está localizado em:
+- `src/pages/Index.tsx` - Página principal
+- `src/components/sections/` - Seções individuais
+
+## 🚀 Deploy
+
+### Vercel (Recomendado)
+1. Conecte seu repositório ao Vercel
+2. Configure o build command: `npm run build`
+3. Configure o output directory: `dist`
+4. Deploy automático a cada push
+
+### Netlify
+1. Conecte seu repositório ao Netlify
+2. Build command: `npm run build`
+3. Publish directory: `dist`
+
+### Outros Provedores
+Qualquer provedor de hospedagem estática:
+```bash
+npm run build
+# Upload da pasta 'dist'
+```
+
+## 📊 Analytics e Tracking
+
+- **Google Tag Manager**: GTM-TZTDQRC8
+- **UTM Pixel**: Configurado para tracking de conversões
+- **Facebook Pixel**: Integração para remarketing
+
+## 🔧 Configuração de Áudio
+
+O player de áudio suporta:
+- **Fonte Principal**: Supabase Storage
+- **Fallback**: Arquivo local em `/public/audio/`
+- **Lazy Loading**: Carregamento sob demanda
+- **Controles Personalizados**: Interface customizada
+
+## 📱 Suporte a Dispositivos
+
+- **Desktop**: Experiência completa com todas as animações
+- **Tablet**: Layout adaptativo
+- **Mobile**: Otimizações específicas de performance
+- **Acessibilidade**: Suporte a leitores de tela
+
+## 🤝 Contribuição
+
+Contribuições são bem-vindas! Por favor:
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature
+3. Commit suas mudanças
+4. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
+## 📞 Suporte
+
+Para dúvidas ou suporte:
+- Abra uma issue no GitHub
+- Entre em contato através do site oficial

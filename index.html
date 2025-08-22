@@ -10,33 +10,102 @@
     <meta property="og:title" content="Fator Essencial - Método 5Ps | Reprogramação Mental em 15 Minutos" />
     <meta property="og:description" content="Método revolucionário de 15 minutos diários para reprogramar sua mente para a prosperidade. Transforme ansiedade em combustível e derrube barreiras invisíveis." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image" content="/favicon.ico" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@fator_essencial" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:image" content="/favicon.ico" />
     
-    <!-- Google Fonts -->
+    <!-- Performance Optimization: Preconnect hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://tracking.utmify.com.br">
+    <link rel="preconnect" href="https://api6.ipify.org">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     
-    <!-- UTM Pixel Tracking -->
+    <!-- Google Fonts with optimized loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Mobile-specific optimizations -->
+    <link rel="stylesheet" href="/src/mobile-optimizations.css" media="screen and (max-width: 768px)">
+    
+    <!-- Preload critical images for mobile -->
+    <link rel="preload" as="image" href="/src/assets/hero-background.jpg" media="(max-width: 768px)">
+    <link rel="preload" as="image" href="/src/assets/ricardo-author.jpg" media="(max-width: 768px)">
+    
+    <!-- Preload critical modules for mobile -->
+    <link rel="modulepreload" href="/src/main.tsx" media="(max-width: 768px)">
+    <link rel="modulepreload" href="/src/hooks/use-mobile.tsx" media="(max-width: 768px)">
+    
+    <!-- Mobile-optimized script loading -->
     <script>
-      window.pixelId = "68a000dd95099f1dffad68c4";
-      var a = document.createElement("script");
-      a.setAttribute("async", "");
-      a.setAttribute("defer", "");
-      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-      document.head.appendChild(a);
+      // Check if mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+      
+      // Optimize audio loading for mobile
+      if (isMobile) {
+        // Preload audio only after user interaction
+        let audioPreloaded = false;
+        const preloadAudio = () => {
+          if (audioPreloaded) return;
+          audioPreloaded = true;
+          
+          const audioLink = document.createElement('link');
+          audioLink.rel = 'preload';
+          audioLink.as = 'audio';
+          audioLink.href = '/audio/sales-letter-narration.mp3';
+          document.head.appendChild(audioLink);
+        };
+        
+        ['click', 'scroll', 'touchstart'].forEach(event => {
+          document.addEventListener(event, preloadAudio, { once: true, passive: true });
+        });
+      }
+      
+      // Defer non-critical scripts for mobile performance
+      function loadScript(src, callback) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.defer = true;
+        script.src = src;
+        if (callback) script.onload = callback;
+        document.head.appendChild(script);
+      }
+      
+      // Load scripts after page load or user interaction
+      function initTracking() {
+        // UTM Pixel Tracking
+        window.pixelId = "68a000dd95099f1dffad68c4";
+        loadScript("https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+        
+        // Google Tag Manager
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+        loadScript('https://www.googletagmanager.com/gtm.js?id=GTM-TZTDQRC8');
+      }
+      
+      // Load immediately on desktop, defer on mobile
+      if (isMobile) {
+        // Load after user interaction or 3 seconds delay
+        let loaded = false;
+        const loadTracking = () => {
+          if (!loaded) {
+            loaded = true;
+            initTracking();
+          }
+        };
+        
+        ['touchstart', 'scroll', 'click'].forEach(event => {
+          document.addEventListener(event, loadTracking, { once: true, passive: true });
+        });
+        
+        setTimeout(loadTracking, 3000);
+      } else {
+        initTracking();
+      }
     </script>
-    
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TZTDQRC8');</script>
   </head>
 
   <body>

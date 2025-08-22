@@ -55,28 +55,28 @@ export const AuthorSection = () => {
             
             {/* Credentials */}
             <div className="bg-gradient-to-r from-primary/10 via-gold/10 to-primary/10 rounded-2xl p-6 border border-gold/20">
-              <h4 className="text-xl font-montserrat font-bold text-primary mb-4 text-center">
+              <h4 className="text-xl font-montserrat font-bold text-gold mb-4 text-center">
                 Credenciais & Reconhecimentos
               </h4>
               <div className="grid sm:grid-cols-2 gap-4 text-sm font-inter">
                 <div className="space-y-2">
                   <p className="flex items-center space-x-2">
                     <span className="text-gold">✓</span>
-                    <span>Especialista em Neurociência Comportamental</span>
+                    <span className="text-white">Especialista em Neurociência Comportamental</span>
                   </p>
                   <p className="flex items-center space-x-2">
                     <span className="text-gold">✓</span>
-                    <span>Mentor de 2.847+ empreendedores</span>
+                    <span className="text-white">Mentor de 2.847+ empreendedores</span>
                   </p>
                 </div>
                 <div className="space-y-2">
                   <p className="flex items-center space-x-2">
                     <span className="text-gold">✓</span>
-                    <span>5+ anos de pesquisa aplicada</span>
+                    <span className="text-white">5+ anos de pesquisa aplicada</span>
                   </p>
                   <p className="flex items-center space-x-2">
                     <span className="text-gold">✓</span>
-                    <span>Palestrante </span>
+                    <span className="text-white">Terapeuta Holístico</span>
                   </p>
                 </div>
               </div>

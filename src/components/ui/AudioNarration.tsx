@@ -5,12 +5,16 @@ interface AudioNarrationProps {
   audioSrc: string;
   autoSync?: boolean;
   className?: string;
+  fallbackSrc?: string;
+  lazyLoad?: boolean;
 }
 
 export const AudioNarration: React.FC<AudioNarrationProps> = ({
   audioSrc,
   autoSync = false,
-  className = ""
+  className = "",
+  fallbackSrc,
+  lazyLoad = true
 }) => {
   return (
     <div className={`bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-gold/20 max-w-md mx-auto ${className}`}>
@@ -26,6 +30,8 @@ export const AudioNarration: React.FC<AudioNarrationProps> = ({
         src={audioSrc}
         autoSync={autoSync}
         className="w-full mb-6"
+        fallbackSrc={fallbackSrc}
+        lazyLoad={lazyLoad}
       />
       
       {/* Instruções */}

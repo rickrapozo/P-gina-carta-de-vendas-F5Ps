@@ -7,12 +7,16 @@ interface AudioPlayerProps {
   src: string;
   autoSync?: boolean;
   className?: string;
+  lazyLoad?: boolean;
+  fallbackSrc?: string;
 }
 
 export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   src,
   autoSync = false,
-  className = ""
+  className = "",
+  lazyLoad = true,
+  fallbackSrc
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -22,6 +26,8 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const [playbackRate, setPlaybackRate] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentSrc, setCurrentSrc] = useState<string>(src);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -39,10 +45,16 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
     const handleError = (e: Event) => {
       setIsLoading(false);
-      const target = e.target as HTMLAudioElement;
-      const errorMessage = `Erro ao carregar áudio: ${target.error?.message || 'Arquivo não encontrado'}`;
-      setError(errorMessage);
-      console.error('Erro no áudio:', errorMessage);
+      // Try fallback source if available and not already tried
+      if (fallbackSrc && currentSrc !== fallbackSrc) {
+        setCurrentSrc(fallbackSrc);
+        setError('Tentando fonte alternativa...');
+      } else {
+        const target = e.target as HTMLAudioElement;
+        const errorMessage = `Erro ao carregar áudio: ${target.error?.message || 'Arquivo não encontrado'}`;
+        setError(errorMessage);
+        console.error('Erro no áudio:', errorMessage);
+      }
     };
 
     const handleTimeUpdate = () => {
@@ -69,18 +81,42 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       audio.removeEventListener('timeupdate', handleTimeUpdate);
       audio.removeEventListener('ended', handleEnded);
     };
+  }, [currentSrc]);
+
+  // Update currentSrc when src changes
+  useEffect(() => {
+    setCurrentSrc(src);
   }, [src]);
+
+  const loadAudio = () => {
+    if (lazyLoad && !currentSrc && !hasUserInteracted) {
+      setCurrentSrc(src);
+      setHasUserInteracted(true);
+    }
+  };
 
   const togglePlayPause = () => {
     const audio = audioRef.current;
     if (!audio || error) return;
+
+    // Load audio on first interaction if lazy loading is enabled
+    if (lazyLoad && !currentSrc) {
+      loadAudio();
+      return;
+    }
 
     if (isPlaying) {
       audio.pause();
     } else {
       audio.play().catch((err) => {
         console.error('Erro ao reproduzir áudio:', err);
-        setError('Erro ao reproduzir áudio');
+        // Try fallback source if available
+        if (fallbackSrc && currentSrc !== fallbackSrc) {
+          setCurrentSrc(fallbackSrc);
+          setError('Tentando fonte alternativa...');
+        } else {
+          setError('Erro ao reproduzir o áudio. Verifique sua conexão.');
+        }
       });
     }
     setIsPlaying(!isPlaying);
@@ -133,7 +169,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           <p className="text-destructive font-medium mb-2">⚠️ Erro no Player de Áudio</p>
           <p className="text-sm text-destructive/80">{error}</p>
           <p className="text-xs text-muted-foreground mt-2">
-            Verifique se o arquivo existe em: <code>/audio/sales-letter-narration.MP3</code>
+            Verifique se o arquivo existe em: <code>/audio/sales-letter-narration.mp3</code>
           </p>
         </div>
       </div>
@@ -142,7 +178,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   return (
     <div className={`bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 ${className}`}>
-      <audio ref={audioRef} src={src} preload="metadata" />
+      <audio ref={audioRef} src={currentSrc} preload={lazyLoad ? "none" : "metadata"} />
       
       {isLoading && (
         <div className="text-center py-4">

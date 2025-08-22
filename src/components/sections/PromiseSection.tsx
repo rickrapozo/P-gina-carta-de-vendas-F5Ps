@@ -57,7 +57,7 @@ export const PromiseSection = () => {
         {/* Success Vision */}
         <div className="bg-gradient-to-r from-gold/10 via-gold/5 to-gold/10 rounded-3xl p-8 lg:p-12 border border-gold/20">
           <div className="text-center">
-            <h3 className="text-2xl sm:text-3xl font-montserrat font-bold text-primary mb-6">
+            <h3 className="text-2xl sm:text-3xl font-montserrat font-bold text-gold mb-6">
               Imagine acordar amanhã sabendo que...
             </h3>
             
@@ -72,7 +72,7 @@ export const PromiseSection = () => {
               ].map((vision, index) => (
                 <div key={index} className="flex items-start space-x-3">
                   <span className="text-gold text-xl font-bold">✓</span>
-                  <p className="font-inter text-card-foreground">{vision}</p>
+                  <p className="font-inter text-white">{vision}</p>
                 </div>
               ))}
             </div>

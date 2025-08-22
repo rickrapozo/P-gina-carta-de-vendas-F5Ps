@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { AudioNarration } from "@/components/ui/AudioNarration";
 import heroBackground from "@/assets/hero-background.jpg";
 import { useEffect, useState } from "react";
+import { activeAudioConfig, optimizeAudioUrl } from "@/config/audio-config";
 
 export const HeroSection = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -63,8 +64,10 @@ export const HeroSection = () => {
           {/* Audio Narration Player - Centered */}
           <div className="flex justify-center py-6">
             <AudioNarration 
-              audioSrc="/audio/sales-letter-narration.MP3"
+              audioSrc={activeAudioConfig.primary}
+              fallbackSrc={activeAudioConfig.fallback}
               autoSync={false}
+              lazyLoad={activeAudioConfig.lazyLoad}
               className=""
             />
           </div>
